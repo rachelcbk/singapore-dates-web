@@ -1,9 +1,80 @@
+:root {
+  /* Primary colors */
+  --primary: #0049e6;
+  --on-primary: #f2f1ff;
+  --primary-container: #829bff;
+  --on-primary-container: #001a63;
+  --primary-dim: #0040cb;
+  --primary-fixed: #829bff;
+  --primary-fixed-dim: #6e8cff;
+  --on-primary-fixed: #000000;
+  --on-primary-fixed-variant: #002278;
+  --inverse-primary: #6a89ff;
+
+  /* Secondary colors */
+  --secondary: #9b3f00;
+  --on-secondary: #fff0ea;
+  --secondary-container: #ffc5aa;
+  --on-secondary-container: #7b3100;
+  --secondary-dim: #883700;
+  --secondary-fixed: #ffc5aa;
+  --secondary-fixed-dim: #ffb28c;
+  --on-secondary-fixed: #5c2300;
+  --on-secondary-fixed-variant: #893700;
+
+  /* Tertiary colors */
+  --tertiary: #006a28;
+  --on-tertiary: #cfffce;
+  --tertiary-container: #5cfd80;
+  --on-tertiary-container: #005d22;
+  --tertiary-dim: #005d22;
+  --tertiary-fixed: #5cfd80;
+  --tertiary-fixed-dim: #4bee74;
+  --on-tertiary-fixed: #004819;
+  --on-tertiary-fixed-variant: #006827;
+
+  /* Surface colors */
+  --surface: #f5f6f7;
+  --on-surface: #2c2f30;
+  --on-surface-variant: #595c5d;
+  --surface-dim: #d1d5d7;
+  --surface-bright: #f5f6f7;
+  --surface-variant: #dadddf;
+  --surface-tint: #0049e6;
+  --surface-container: #e6e8ea;
+  --surface-container-low: #eff1f2;
+  --surface-container-high: #e0e3e4;
+  --surface-container-highest: #dadddf;
+  --surface-container-lowest: #ffffff;
+
+  /* Background */
+  --background: #f5f6f7;
+  --on-background: #2c2f30;
+
+  /* Error colors */
+  --error: #b41340;
+  --on-error: #ffefef;
+  --error-container: #f74b6d;
+  --on-error-container: #510017;
+  --error-dim: #a70138;
+
+  /* Outline */
+  --outline: #757778;
+  --outline-variant: #abadae;
+
+  /* Inverse */
+  --inverse-surface: #0c0f10;
+  --inverse-on-surface: #9b9d9e;
+}
+
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
 body {
   font-family: 'Inter', sans-serif;
+  background-color: var(--surface);
+  color: var(--on-surface);
 }
 
 h1, h2, h3, .brand-font {

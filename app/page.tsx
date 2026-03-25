@@ -1,4 +1,9 @@
-export default function Home() {
+import { getEvents } from './lib/supabase';
+import { EventCard } from './components/EventCard';
+
+export default async function Home() {
+  const events = await getEvents();
+
   return (
     <>
       {/* TopAppBar Navigation Shell */}
@@ -33,7 +38,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7">
               <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface mb-6 leading-[1.1]">
-                The City’s <span className="text-primary italic">Pulse</span>, Curated.
+                The City's <span className="text-primary italic">Pulse</span>, Curated.
               </h1>
               <p className="text-xl text-on-surface-variant max-w-lg leading-relaxed">
                 Discover exclusive workshops, underground pop-ups, and tech mixers hidden in the heart of Singapore.
@@ -79,105 +84,15 @@ export default function Home() {
 
         {/* Event Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10">
-          {/* Card 1: Sunset Pottery Workshop */}
-          <article className="group bg-surface-container-lowest rounded-DEFAULT overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(44,47,48,0.06)]">
-            <div className="relative aspect-[16/10] overflow-hidden">
-              <img className="w-full h-full object-cover" alt="Hands shaping a wet clay bowl on a pottery wheel with golden sunset light streaming through a window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj2onY8SHtyqyFooVrCPKXLrMYeeGSf8NDMOMm09LGaOpiorWsGlMp0X6JosQ8-RZVEJoqhKCJmNdlSVsHE7m0nXKtjI3Rq3Cf2c9YFNcD6jiqylZczkd-QcaGGn_WGilTBv7hJcDFiplL6FYoIROiAQrtuPJ3PP1ioFIuxmOi01Au5BGI08BVghFPwMjMYYMPVw1MiLI2rhsAGVyZ7BoHGJ_KfsoCgmPLPlGCJ-hWLbSWXZjSRiD6-EdP3rPJhtLCYdffEDolV2E" />
-              <div className="absolute top-4 left-4">
-                <span className="bg-tertiary-container text-on-tertiary-container px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm">FREE</span>
-              </div>
+          {events.length > 0 ? (
+            events.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))
+          ) : (
+            <div className="col-span-full text-center py-20">
+              <p className="text-on-surface-variant text-lg">No events found. Check back soon!</p>
             </div>
-            <div className="p-8">
-              <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-3">By: Makers Studio SG</p>
-              <h3 className="text-2xl font-bold text-on-surface mb-3 group-hover-text-primary transition-colors">Sunset Pottery Workshop</h3>
-              <p className="text-on-surface-variant text-sm leading-relaxed mb-6">Create your own clay masterpiece as the sun dips over Sentosa. Materials and guidance provided.</p>
-              <div className="flex items-center text-xs text-on-surface-variant font-medium gap-4">
-                <div className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-sm">calendar_today</span>
-                  <span>Oct 24, 5:30 PM</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-sm">location_on</span>
-                  <span>Sentosa</span>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          {/* Card 2: Jewellery Pop-up */}
-          <article className="group bg-surface-container-lowest rounded-DEFAULT overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(44,47,48,0.06)]">
-            <div className="relative aspect-[16/10] overflow-hidden">
-              <img className="w-full h-full object-cover" alt="Luxury jewelry display on minimalist white pedestals with soft shadows and elegant gold necklaces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR3UTCBccC9cZR3979_Q0HB5PAf1eRj9xq_jndwJ-GhyZEXlHCskjTM9a2KaQdvPqz0jCXhjkG4awxzP6JIsnOpASwGdZNc_YIZqAPxCZ7NhTfnq0Sbyo1LyGsLlps8dzoZWXxipF_jwnnt44EBhLtxXzdigySGAXmj5-UpZJY8N3kQpB03b1ru7Opc6EuI3uBTF3d9auFrxbPXcvWJJ8dhDk-Xtd1TcRWt_8A-Kj5XjbAwSsEe1wm7h3y2vWTtJCsjn5xMSRPZfo" />
-              <div className="absolute top-4 left-4">
-                <span className="bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm">$25</span>
-              </div>
-            </div>
-            <div className="p-8">
-              <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-3">By: Aurum Luxe</p>
-              <h3 className="text-2xl font-bold text-on-surface mb-3 group-hover-text-primary transition-colors">Demi-Fine Jewellery Pop-up</h3>
-              <p className="text-on-surface-variant text-sm leading-relaxed mb-6">Exclusive collection at Orchard Road. Personal styling available and first look at the Winter line.</p>
-              <div className="flex items-center text-xs text-on-surface-variant font-medium gap-4">
-                <div className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-sm">calendar_today</span>
-                  <span>Oct 26, 11:00 AM</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-sm">location_on</span>
-                  <span>Orchard Rd</span>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          {/* Card 3: AI Builders Weekend */}
-          <article className="group bg-surface-container-lowest rounded-DEFAULT overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(44,47,48,0.06)]">
-            <div className="relative aspect-[16/10] overflow-hidden">
-              <img className="w-full h-full object-cover" alt="People collaborating in a modern tech hub with large glass windows and neon blue accent lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf_D7VKSMQKjPFPjjFGhIWXR_N_wGo7j1_BOMPItQYuLpJvR-eNKMiNwx8GVNktZtCHs-7hjP2AsJumBIajoirq0J6idRd5m-UrjqIW4NyNQPkui4ESMDQSr2oXNXsTG_zSzskXCw0HOOrwsxHf8Mg15Q_LgN9IprJZ4QnONC6rK3myJHHsSgwqQKQs08Bkgl_0oFl-qxBLhHj328mVzrAKZOzCy3nRheiaHp5mvT-h2Zp70r4wFFp7LcLMVIbMS4YEFaBEqbs7gU" />
-              <div className="absolute top-4 left-4">
-                <span className="bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm">$45</span>
-              </div>
-            </div>
-            <div className="p-8">
-              <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-3">By: Tech Hub Singapore</p>
-              <h3 className="text-2xl font-bold text-on-surface mb-3 group-hover-text-primary transition-colors">AI Builders Weekend Mixer</h3>
-              <p className="text-on-surface-variant text-sm leading-relaxed mb-6">Connect with the brightest minds in tech at NUS Enterprise. Deep tech demos and networking.</p>
-              <div className="flex items-center text-xs text-on-surface-variant font-medium gap-4">
-                <div className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-sm">calendar_today</span>
-                  <span>Nov 01, 6:00 PM</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-sm">location_on</span>
-                  <span>Kent Ridge</span>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          {/* Card 4: Additional Editorial Context */}
-          <article className="group bg-surface-container-lowest rounded-DEFAULT overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(44,47,48,0.06)]">
-            <div className="relative aspect-[16/10] overflow-hidden">
-              <img className="w-full h-full object-cover" alt="Table full of diverse gourmet dishes and artisanal cocktails at a dimly lit modern bistro" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBECVKb08vshV75B-CUFwB0ks1MdJp9MJ_f2zh3KOLZYxaWDF1kNcqelHS7PgUFWfOySLNagYqqRwkmpOunLAJFCORqDynxKzlC6yVEZnwgcPbstLscpwccL7lxWQ5_6QdYZNPbX2LZnbXcT0MLnPUPJu_B_5kZMX9YYkkgd2tKcRu1uW5oIRrjA1i3ymae7ZqXS8nuldoK9w8XKGZMiZ-HyefgH3KWbuDq_JSt_Y016nBqh3decxDE_Mw4ow8ELJCoRy4YjIURJj8" />
-              <div className="absolute top-4 left-4">
-                <span className="bg-tertiary-container text-on-tertiary-container px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm">FREE</span>
-              </div>
-            </div>
-            <div className="p-8">
-              <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-3">By: Gastronomy Guild</p>
-              <h3 className="text-2xl font-bold text-on-surface mb-3 group-hover-text-primary transition-colors">Bespoke Cocktail Night</h3>
-              <p className="text-on-surface-variant text-sm leading-relaxed mb-6">A curated journey through Singapore&apos;s finest botanical gins and small-batch bitters.</p>
-              <div className="flex items-center text-xs text-on-surface-variant font-medium gap-4">
-                <div className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-sm">calendar_today</span>
-                  <span>Nov 05, 8:00 PM</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="material-symbols-outlined text-sm">location_on</span>
-                  <span>Keong Saik</span>
-                </div>
-              </div>
-            </div>
-          </article>
+          )}
         </div>
 
         {/* Pagination / Load More */}

@@ -53,7 +53,7 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
             <span style={{
               color: '#2c2f30',
               textShadow: '0 4px 8px rgba(44, 47, 48, 0.15)',
-              transform: 'translateY(4vh)',
+              transform: 'translateY(6vh)',
             }}>Out</span>
           </div>
 

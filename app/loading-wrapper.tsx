@@ -46,13 +46,14 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
             fontSize: '2.5rem',
             fontWeight: 800,
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'flex-start',
             gap: '0.5rem',
           }}>
             <span style={{ color: '#0049e6' }}>Head</span>
             <span style={{
               color: '#2c2f30',
               textShadow: '0 4px 8px rgba(44, 47, 48, 0.15)',
+              transform: 'translateY(8px)',
             }}>Out</span>
           </div>
 

@@ -120,7 +120,7 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
                   <span className="material-symbols-outlined text-primary text-2xl">location_on</span>
                 </div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-1">Location</p>
-                <p className="text-base text-on-surface font-semibold">{event.general_area || event.location}</p>
+                <p className="text-base text-on-surface font-semibold">{event.location}</p>
               </div>
             </div>
           </div>

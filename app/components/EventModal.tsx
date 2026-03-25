@@ -93,11 +93,20 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
             </p>
           </div>
 
-          {/* Info Bar - Date & Location Side by Side, Then Time Below */}
+          {/* Info Bar - Location First, Then Date & Time */}
           <div className="bg-surface-container-low rounded-[2rem] p-8 md:p-12">
-            {/* Date & Location - Side by Side */}
-            <div className="grid grid-cols-2 gap-8 mb-8">
-              {/* Date - Left */}
+            {/* Location - Full Width, Centered */}
+            <div className="flex flex-col items-center text-center mb-8">
+              <div className="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center mb-3 shadow-sm">
+                <span className="material-symbols-outlined text-primary text-2xl">location_on</span>
+              </div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-1">Location</p>
+              <p className="text-sm text-on-surface font-semibold">{event.location}</p>
+            </div>
+
+            {/* Date & Time - Side by Side */}
+            <div className="grid grid-cols-2 gap-8">
+              {/* Date */}
               <div className="flex flex-col items-center text-center">
                 <div className="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center mb-3 shadow-sm">
                   <span className="material-symbols-outlined text-primary text-2xl">calendar_today</span>
@@ -106,23 +115,14 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
                 <p className="text-sm text-on-surface font-semibold">{displayDate}</p>
               </div>
 
-              {/* Location - Right, Aligned with Date */}
+              {/* Time */}
               <div className="flex flex-col items-center text-center">
                 <div className="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center mb-3 shadow-sm">
-                  <span className="material-symbols-outlined text-primary text-2xl">location_on</span>
+                  <span className="material-symbols-outlined text-primary text-2xl">schedule</span>
                 </div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-1">Location</p>
-                <p className="text-sm text-on-surface font-semibold">{event.location}</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-1">Time</p>
+                <p className="text-sm text-on-surface font-semibold">{event.event_time}</p>
               </div>
-            </div>
-
-            {/* Time - Centered Below */}
-            <div className="flex flex-col items-center text-center">
-              <div className="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center mb-3 shadow-sm">
-                <span className="material-symbols-outlined text-primary text-2xl">schedule</span>
-              </div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-1">Time</p>
-              <p className="text-sm text-on-surface font-semibold">{event.event_time}</p>
             </div>
           </div>
         </div>

@@ -136,25 +136,35 @@
 <body class="bg-surface text-on-surface min-h-screen">
     <!-- Page Loader -->
     <div id="page-loader">
-        <div class="loader-spinner"></div>
+        <div style="text-align: center;">
+            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 800; color: #2c2f30; margin-bottom: 1rem; letter-spacing: -0.02em;">Head Out</div>
+            <div class="loader-spinner"></div>
+        </div>
     </div>
     
     <script>
-        // Prevent FOUC: Show content only when styles are ready
+        // Prevent FOUC: Show branded loader until styles are ready
         (function() {
-            var hideTimer = setTimeout(function() {
-                document.body.classList.add('loaded');
-                var loader = document.getElementById('page-loader');
-                if (loader) loader.classList.add('hidden');
-            }, 100); // Quick render
+            var loader = document.getElementById('page-loader');
+            var minLoadTime = 800; // Show loader for at least 800ms
+            var startTime = Date.now();
             
-            // Ensure loader hides when everything is ready
-            window.addEventListener('load', function() {
-                clearTimeout(hideTimer);
-                document.body.classList.add('loaded');
-                var loader = document.getElementById('page-loader');
-                if (loader) loader.classList.add('hidden');
-            });
+            function hideLoader() {
+                var elapsed = Date.now() - startTime;
+                var remaining = Math.max(0, minLoadTime - elapsed);
+                
+                setTimeout(function() {
+                    document.body.classList.add('loaded');
+                    if (loader) loader.classList.add('hidden');
+                }, remaining);
+            }
+            
+            // Hide on window load
+            if (document.readyState === 'complete') {
+                hideLoader();
+            } else {
+                window.addEventListener('load', hideLoader);
+            }
         })();
     </script>
     <noscript>

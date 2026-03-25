@@ -154,3 +154,9 @@ h1, h2, h3, .brand-font {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* EventCard group hover - title turns blue */
+.event-card:hover .event-card-title {
+  color: var(--primary);
+}
+

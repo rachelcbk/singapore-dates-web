@@ -11,7 +11,7 @@ export function EventCard({ event, onClick }: EventCardProps) {
   return (
     <article 
       onClick={onClick}
-      className="group bg-surface-container-lowest rounded-DEFAULT overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(44,47,48,0.06)] cursor-pointer"
+      className="event-card group bg-surface-container-lowest rounded-DEFAULT overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(44,47,48,0.06)] cursor-pointer"
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <img 
@@ -33,7 +33,7 @@ export function EventCard({ event, onClick }: EventCardProps) {
         <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-3">
           By: {event.organiser}
         </p>
-        <h3 className="text-2xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">
+        <h3 className="event-card-title text-2xl font-bold text-on-surface mb-3 transition-colors duration-200">
           {event.title}
         </h3>
         <p className="text-on-surface-variant text-sm leading-relaxed mb-6">

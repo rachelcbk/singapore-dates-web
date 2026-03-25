@@ -61,6 +61,7 @@
   /* Outline */
   --outline: #757778;
   --outline-variant: #abadae;
+  --outline-variant-20: rgba(171, 173, 174, 0.2);
 
   /* Inverse */
   --inverse-surface: #0c0f10;
@@ -117,14 +118,18 @@
 /* Border colors */
 .border-outline { border-color: var(--outline); }
 .border-outline-variant { border-color: var(--outline-variant); }
-.border-outline-variant\\/20 { border-color: rgba(171, 173, 174, 0.2); }
+.border-outline-variant-20 { border-color: var(--outline-variant-20); }
 
-/* Opacity variants */
-.bg-surface-container-highest\\/30 { background-color: rgba(218, 221, 223, 0.3); }
-.hover\\:bg-surface-container-highest:hover { background-color: var(--surface-container-highest); }
+/* Opacity variants - using separate classes without slashes */
+.bg-surface-container-highest-30 { background-color: rgba(218, 221, 223, 0.3); }
+.hover-bg-surface-container-highest:hover { background-color: var(--surface-container-highest); }
 
-/* Group hover */
-.group:hover .group-hover\\:text-primary { color: var(--primary); }
+/* Group hover for card titles */
+.group:hover .group-hover-text-primary { color: var(--primary); }
+
+/* Backdrop blur support */
+.backdrop-blur-md { backdrop-filter: blur(12px); }
+.backdrop-blur-xl { backdrop-filter: blur(24px); }
 
 /* Base styles */
 .material-symbols-outlined {

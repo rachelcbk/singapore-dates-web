@@ -91,7 +91,7 @@ export default function Home() {
             </div>
             <div className="p-8">
               <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-3">By: Makers Studio SG</p>
-              <h3 className="text-2xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">Sunset Pottery Workshop</h3>
+              <h3 className="text-2xl font-bold text-on-surface mb-3 group-hover-text-primary transition-colors">Sunset Pottery Workshop</h3>
               <p className="text-on-surface-variant text-sm leading-relaxed mb-6">Create your own clay masterpiece as the sun dips over Sentosa. Materials and guidance provided.</p>
               <div className="flex items-center text-xs text-on-surface-variant font-medium gap-4">
                 <div className="flex items-center gap-1">
@@ -116,7 +116,7 @@ export default function Home() {
             </div>
             <div className="p-8">
               <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-3">By: Aurum Luxe</p>
-              <h3 className="text-2xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">Demi-Fine Jewellery Pop-up</h3>
+              <h3 className="text-2xl font-bold text-on-surface mb-3 group-hover-text-primary transition-colors">Demi-Fine Jewellery Pop-up</h3>
               <p className="text-on-surface-variant text-sm leading-relaxed mb-6">Exclusive collection at Orchard Road. Personal styling available and first look at the Winter line.</p>
               <div className="flex items-center text-xs text-on-surface-variant font-medium gap-4">
                 <div className="flex items-center gap-1">
@@ -141,7 +141,7 @@ export default function Home() {
             </div>
             <div className="p-8">
               <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-3">By: Tech Hub Singapore</p>
-              <h3 className="text-2xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">AI Builders Weekend Mixer</h3>
+              <h3 className="text-2xl font-bold text-on-surface mb-3 group-hover-text-primary transition-colors">AI Builders Weekend Mixer</h3>
               <p className="text-on-surface-variant text-sm leading-relaxed mb-6">Connect with the brightest minds in tech at NUS Enterprise. Deep tech demos and networking.</p>
               <div className="flex items-center text-xs text-on-surface-variant font-medium gap-4">
                 <div className="flex items-center gap-1">
@@ -166,7 +166,7 @@ export default function Home() {
             </div>
             <div className="p-8">
               <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-3">By: Gastronomy Guild</p>
-              <h3 className="text-2xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">Bespoke Cocktail Night</h3>
+              <h3 className="text-2xl font-bold text-on-surface mb-3 group-hover-text-primary transition-colors">Bespoke Cocktail Night</h3>
               <p className="text-on-surface-variant text-sm leading-relaxed mb-6">A curated journey through Singapore&apos;s finest botanical gins and small-batch bitters.</p>
               <div className="flex items-center text-xs text-on-surface-variant font-medium gap-4">
                 <div className="flex items-center gap-1">
@@ -184,7 +184,7 @@ export default function Home() {
 
         {/* Pagination / Load More */}
         <div className="mt-20 flex justify-center">
-          <button className="bg-surface-container-highest/30 hover:bg-surface-container-highest transition-colors px-12 py-4 rounded-full font-bold text-on-surface border border-outline-variant/20">
+          <button className="bg-surface-container-highest-30 hover-bg-surface-container-highest transition-colors px-12 py-4 rounded-full font-bold text-on-surface border border-outline-variant-20">
             Discover More
           </button>
         </div>

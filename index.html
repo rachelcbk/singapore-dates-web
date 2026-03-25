@@ -134,41 +134,51 @@
     </style>
 </head>
 <body class="bg-surface text-on-surface min-h-screen">
-    <!-- Page Loader -->
+    <!-- Page Loader - Covers everything until ready -->
     <div id="page-loader">
         <div style="text-align: center;">
-            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 800; color: #2c2f30; margin-bottom: 1rem; letter-spacing: -0.02em;">Head Out</div>
+            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 800; color: #0049e6; margin-bottom: 1rem; letter-spacing: -0.02em;">Head Out</div>
             <div class="loader-spinner"></div>
         </div>
     </div>
     
     <script>
-        // Prevent FOUC: Show branded loader until styles are ready
+        // Aggressive FOUC prevention - hide everything until ready
         (function() {
+            // Force hide everything immediately
+            document.documentElement.style.visibility = 'hidden';
+            
             var loader = document.getElementById('page-loader');
-            var minLoadTime = 800; // Show loader for at least 800ms
+            var minLoadTime = 600;
             var startTime = Date.now();
             
-            function hideLoader() {
+            function showContent() {
                 var elapsed = Date.now() - startTime;
                 var remaining = Math.max(0, minLoadTime - elapsed);
                 
                 setTimeout(function() {
+                    // Show content
+                    document.documentElement.style.visibility = 'visible';
                     document.body.classList.add('loaded');
-                    if (loader) loader.classList.add('hidden');
+                    // Hide loader
+                    if (loader) {
+                        loader.style.opacity = '0';
+                        setTimeout(function() {
+                            loader.style.display = 'none';
+                        }, 300);
+                    }
                 }, remaining);
             }
             
-            // Hide on window load
             if (document.readyState === 'complete') {
-                hideLoader();
+                showContent();
             } else {
-                window.addEventListener('load', hideLoader);
+                window.addEventListener('load', showContent);
             }
         })();
     </script>
     <noscript>
-        <style>body { opacity: 1 !important; } #page-loader { display: none !important; }</style>
+        <style>html { visibility: visible !important; } body { opacity: 1 !important; } #page-loader { display: none !important; }</style>
     </noscript>
 <!-- TopAppBar Navigation Shell -->
 <header class="docked full-width top-0 z-50 bg-surface/80 backdrop-blur-md sticky">

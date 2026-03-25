@@ -62,7 +62,7 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
                 ? 'bg-tertiary-container text-on-tertiary-container' 
                 : 'bg-secondary-container text-on-secondary-container'
             }`}>
-              {isFree ? 'Free Workshop' : event.cost}
+              {event.cost}
             </span>
           </div>
 
@@ -86,12 +86,9 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
           </div>
 
           {/* Description */}
-          <div className="mb-10 space-y-4">
+          <div className="mb-10">
             <p className="text-on-surface-variant leading-relaxed">
-              {event.summary}
-            </p>
-            <p className="text-on-surface-variant leading-relaxed">
-              {event.description || 'Join us for this exciting event! More details will be shared soon.'}
+              {event.description}
             </p>
           </div>
 

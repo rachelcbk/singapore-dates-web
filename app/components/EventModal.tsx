@@ -102,7 +102,7 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
                   <span className="material-symbols-outlined text-primary text-2xl">calendar_today</span>
                 </div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-1">Date</p>
-                <p className="text-base text-on-surface font-semibold">{displayDate}</p>
+                <p className="text-sm text-on-surface font-semibold">{displayDate}</p>
               </div>
 
               {/* Time */}
@@ -111,7 +111,7 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
                   <span className="material-symbols-outlined text-primary text-2xl">schedule</span>
                 </div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-1">Time</p>
-                <p className="text-base text-on-surface font-semibold">{event.event_time}</p>
+                <p className="text-sm text-on-surface font-semibold">{event.event_time}</p>
               </div>
 
               {/* Location */}
@@ -120,7 +120,7 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
                   <span className="material-symbols-outlined text-primary text-2xl">location_on</span>
                 </div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-1">Location</p>
-                <p className="text-base text-on-surface font-semibold">{event.location}</p>
+                <p className="text-sm text-on-surface font-semibold">{event.location}</p>
               </div>
             </div>
           </div>

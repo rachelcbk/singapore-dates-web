@@ -1,6 +1,6 @@
 'use client';
 
-import { Event } from '../types';
+import { Event, formatDateRange } from '../types';
 import { useEffect } from 'react';
 
 interface EventModalProps {
@@ -30,6 +30,7 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
   if (!isOpen || !event) return null;
 
   const isFree = event.cost === 'FREE';
+  const displayDate = formatDateRange(event.start_date, event.end_date, event.event_date_range);
 
   return (
     <div 
@@ -55,6 +56,15 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
 
         {/* Content Container */}
         <div className="p-6 md:p-10">
+          {/* Category Badge (if available) */}
+          {event.category && (
+            <div className="flex justify-center mb-4">
+              <span className="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-primary-container text-on-primary-container shadow-sm">
+                {event.category}
+              </span>
+            </div>
+          )}
+
           {/* Cost Badge */}
           <div className="flex justify-center mb-6">
             <span className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm ${
@@ -101,7 +111,7 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
               </div>
               <div>
                 <p className="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Date</p>
-                <p className="text-sm font-semibold text-on-surface">{event.event_date_range}</p>
+                <p className="text-sm font-semibold text-on-surface">{displayDate}</p>
               </div>
             </div>
 

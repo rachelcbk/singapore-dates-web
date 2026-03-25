@@ -6,17 +6,28 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    // Wait for everything to load
-    const handleLoad = () => {
-      setTimeout(() => setLoaded(true), 300);
+    const showContent = () => {
+      setTimeout(() => setLoaded(true), 500);
     };
 
+    // Check if already complete
     if (document.readyState === 'complete') {
-      handleLoad();
-    } else {
-      window.addEventListener('load', handleLoad);
-      return () => window.removeEventListener('load', handleLoad);
+      showContent();
+      return;
     }
+
+    // Wait for load event
+    window.addEventListener('load', showContent);
+    
+    // Fallback: show after 3 seconds max (prevents infinite loading)
+    const timeout = setTimeout(() => {
+      setLoaded(true);
+    }, 3000);
+
+    return () => {
+      window.removeEventListener('load', showContent);
+      clearTimeout(timeout);
+    };
   }, []);
 
   return (

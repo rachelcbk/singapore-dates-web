@@ -4,14 +4,8 @@ import { useState, useEffect } from 'react';
 
 export default function LoadingWrapper({ children }: { children: React.ReactNode }) {
   const [loaded, setLoaded] = useState(false);
-  const [showOut, setShowOut] = useState(false);
 
   useEffect(() => {
-    // Flip "Home" to "Out" after a brief moment
-    const flipTimer = setTimeout(() => {
-      setShowOut(true);
-    }, 600);
-
     const showContent = () => {
       setTimeout(() => setLoaded(true), 500);
     };
@@ -22,13 +16,11 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
       window.addEventListener('load', showContent);
     }
 
-    // Fallback timeout
     const timeout = setTimeout(() => {
       setLoaded(true);
     }, 3000);
 
     return () => {
-      clearTimeout(flipTimer);
       window.removeEventListener('load', showContent);
       clearTimeout(timeout);
     };
@@ -48,7 +40,7 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
           justifyContent: 'center',
           zIndex: 99999,
         }}>
-          {/* Logo with flip animation */}
+          {/* Logo */}
           <div style={{
             fontFamily: 'Plus Jakarta Sans, sans-serif',
             fontSize: '2.5rem',
@@ -59,39 +51,9 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
           }}>
             <span style={{ color: '#0049e6' }}>Head</span>
             <span style={{
-              display: 'inline-block',
-              perspective: '1000px',
-              position: 'relative',
-              width: '3.5ch',
-              textAlign: 'center',
-            }}>
-              {/* Home - flips out */}
-              <span style={{
-                display: 'block',
-                color: '#2c2f30',
-                transform: showOut ? 'rotateX(-90deg)' : 'rotateX(0deg)',
-                transformOrigin: 'center bottom',
-                transition: 'transform 0.4s ease-in',
-                position: 'absolute',
-                inset: 0,
-                backfaceVisibility: 'hidden',
-              }}>
-                Home
-              </span>
-              {/* Out - flips in */}
-              <span style={{
-                display: 'block',
-                color: '#0049e6',
-                transform: showOut ? 'rotateX(0deg)' : 'rotateX(90deg)',
-                transformOrigin: 'center top',
-                transition: 'transform 0.4s ease-out',
-                position: 'absolute',
-                inset: 0,
-                backfaceVisibility: 'hidden',
-              }}>
-                Out
-              </span>
-            </span>
+              color: '#2c2f30',
+              textShadow: '0 4px 8px rgba(44, 47, 48, 0.15)',
+            }}>Out</span>
           </div>
 
           {/* Spinner */}

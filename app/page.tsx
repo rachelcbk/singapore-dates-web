@@ -33,7 +33,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7">
               <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-on-surface mb-6 leading-[1.1]">
-                The City's <span className="text-primary italic">Pulse</span>, Curated.
+                The City’s <span className="text-primary italic">Pulse</span>, Curated.
               </h1>
               <p className="text-xl text-on-surface-variant max-w-lg leading-relaxed">
                 Discover exclusive workshops, underground pop-ups, and tech mixers hidden in the heart of Singapore.

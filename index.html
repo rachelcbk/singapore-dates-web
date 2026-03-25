@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="light" lang="en" style="visibility: hidden;"><head>
+<html class="light" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Head Out | Discover Singapore Events</title>
@@ -146,6 +146,7 @@
         // Show content when ready
         (function() {
             var loader = document.getElementById('page-loader');
+            var content = document.getElementById('page-content');
             var minLoadTime = 500;
             var startTime = Date.now();
             
@@ -154,8 +155,10 @@
                 var remaining = Math.max(0, minLoadTime - elapsed);
                 
                 setTimeout(function() {
-                    document.documentElement.style.visibility = 'visible';
+                    // Show content
+                    if (content) content.style.visibility = 'visible';
                     document.body.classList.add('loaded');
+                    // Hide loader
                     if (loader) {
                         loader.style.opacity = '0';
                         loader.style.visibility = 'hidden';
@@ -170,7 +173,10 @@
             }
         })();
     </script>
-    <noscript><style>html { visibility: visible !important; } #page-loader { display: none !important; }</style></noscript>
+    <noscript><style>#page-content { visibility: visible !important; } #page-loader { display: none !important; }</style></noscript>
+    
+    <!-- Page Content - Hidden until loaded -->
+    <div id="page-content" style="visibility: hidden;">
 <!-- TopAppBar Navigation Shell -->
 <header class="docked full-width top-0 z-50 bg-surface/80 backdrop-blur-md sticky">
 <nav class="flex flex-col w-full px-6 pt-4 pb-2 max-w-7xl mx-auto">
@@ -408,5 +414,6 @@
 <span class="font-['Inter'] text-[10px] uppercase tracking-[5%] font-bold mt-1">Profile</span>
 </a>
 </nav>
+</div>
 </body>
 </html>

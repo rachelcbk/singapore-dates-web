@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import LoadingWrapper from "./loading-wrapper";
 
 export const metadata: Metadata = {
   title: "Head Out | Discover Singapore Events",
@@ -17,28 +18,6 @@ export default function RootLayout({
         <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries" defer></script>
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-        <style dangerouslySetInnerHTML={{__html: `
-          /* Hide page content initially, show loader */
-          #page-content { display: none !important; }
-          #loader {
-            position: fixed;
-            inset: 0;
-            background: #f5f6f7;
-            display: flex !important;
-            align-items: center;
-            justify-content: center;
-            z-index: 99999;
-          }
-          .loader-spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid #e6e8ea;
-            border-top-color: #0049e6;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-          }
-          @keyframes spin { to { transform: rotate(360deg); } }
-        `}} />
         <script dangerouslySetInnerHTML={{__html: `
           tailwind.config = {
             darkMode: "class",
@@ -109,27 +88,9 @@ export default function RootLayout({
         `}} />
       </head>
       <body className="bg-surface text-on-surface min-h-screen">
-        {/* Loader - Shows immediately */}
-        <div id="loader">
-          <div style={{textAlign: 'center'}}>
-            <div style={{fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: '2rem', fontWeight: 800, color: '#0049e6', marginBottom: '1rem'}}>Head Out</div>
-            <div className="loader-spinner"></div>
-          </div>
-        </div>
-        
-        {/* Page content - Hidden until loaded */}
-        <div id="page-content">
+        <LoadingWrapper>
           {children}
-        </div>
-        
-        <script dangerouslySetInnerHTML={{__html: `
-          window.addEventListener('load', function() {
-            setTimeout(function() {
-              document.getElementById('page-content').style.display = 'block';
-              document.getElementById('loader').style.display = 'none';
-            }, 300);
-          });
-        `}} />
+        </LoadingWrapper>
       </body>
     </html>
   );

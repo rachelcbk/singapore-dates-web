@@ -5,24 +5,17 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Head Out | Discover Singapore Events</title>
 
-<!-- CRITICAL: Hide page immediately before anything renders -->
+<!-- THIS RUNS FIRST - Hide everything, show only loader -->
 <style>
-    /* Hide everything except loader */
-    html { margin: 0; padding: 0; }
-    body { 
-        margin: 0; 
-        padding: 0; 
-        font-family: 'Inter', sans-serif;
-        background: #f5f6f7;
-    }
-    /* Page content hidden until ready */
-    #page { display: none; }
+    /* Hide page content immediately */
+    #page-content { display: none !important; }
+    
     /* Loader always visible */
     #loader {
         position: fixed;
-        inset: 0;
+        top: 0; left: 0; right: 0; bottom: 0;
         background: #f5f6f7;
-        display: flex;
+        display: flex !important;
         align-items: center;
         justify-content: center;
         z-index: 99999;
@@ -37,16 +30,6 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 </style>
-
-<!-- Show page when everything loads -->
-<script>
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            document.getElementById('loader').style.display = 'none';
-            document.getElementById('page').style.display = 'block';
-        }, 200);
-    });
-</script>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
@@ -120,28 +103,27 @@
     }
 </script>
 <style>
-    .material-symbols-outlined {
-        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    }
-    h1, h2, h3, .brand-font {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-    }
+    html, body { margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f5f6f7; color: #2c2f30; }
+    h1, h2, h3, .brand-font { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .brand-logo { font-size: 1.5rem; font-weight: 800; color: #2c2f30; letter-spacing: -0.02em; }
 </style>
 </head>
 <body>
-    <!-- LOADER -->
-    <div id="loader">
-        <div style="text-align: center;">
-            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 800; color: #0049e6; margin-bottom: 1rem;">Head Out</div>
-            <div class="loader-spinner"></div>
-        </div>
+
+<!-- LOADER (always visible initially) -->
+<div id="loader">
+    <div style="text-align: center;">
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 800; color: #0049e6; margin-bottom: 1rem;">Head Out</div>
+        <div class="loader-spinner"></div>
     </div>
-    
-    <!-- PAGE CONTENT (hidden by default) -->
-    <div id="page">
+</div>
+
+<!-- PAGE CONTENT (hidden until loaded) -->
+<div id="page-content">
 <header class="docked full-width top-0 z-50 bg-surface/80 backdrop-blur-md sticky">
 <nav class="flex flex-col w-full px-6 pt-4 pb-2 max-w-7xl mx-auto">
 <div class="flex items-center justify-between w-full">
@@ -154,7 +136,7 @@
 </div>
 <div class="flex items-center space-x-4">
 <div class="flex items-center bg-surface-container-low px-4 py-2 rounded-full">
-<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="search">search</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
 <input class="bg-transparent border-none focus:ring-0 text-sm w-40 text-on-surface placeholder:text-on-surface-variant/60" placeholder="Explore Singapore" type="text"/>
 </div>
 </div>
@@ -303,5 +285,16 @@
 <a class="flex flex-col items-center justify-center text-[#595c5d] px-5 py-2 hover:opacity-80 transition-opacity active:scale-95" href="#"><span class="material-symbols-outlined">person</span><span class="font-['Inter'] text-[10px] uppercase tracking-[5%] font-bold mt-1">Profile</span></a>
 </nav>
 </div>
+
+<script>
+    // When everything loads, show content and hide loader
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            document.getElementById('page-content').style.display = 'block';
+            document.getElementById('loader').style.display = 'none';
+        }, 300);
+    });
+</script>
+
 </body>
 </html>

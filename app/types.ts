@@ -16,6 +16,7 @@ export interface Event {
   end_date: string | null;
   category: string | null;
   status: string;
+  general_area: string | null;
 }
 
 // Helper function to format date range for display

@@ -103,7 +103,7 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
           </div>
 
           {/* Info Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Date Card */}
             <div className="flex items-center gap-4 p-4 rounded-2xl bg-surface-container-low">
               <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center flex-shrink-0">
@@ -125,6 +125,19 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
                 <p className="text-sm font-semibold text-on-surface">{event.event_time}</p>
               </div>
             </div>
+
+            {/* General Area Card */}
+            {event.general_area && (
+              <div className="flex items-center gap-4 p-4 rounded-2xl bg-surface-container-low">
+                <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center flex-shrink-0">
+                  <span className="material-symbols-outlined text-on-primary-container">map</span>
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Area</p>
+                  <p className="text-sm font-semibold text-on-surface">{event.general_area}</p>
+                </div>
+              </div>
+            )}
 
             {/* Location Card */}
             <div className="flex items-center gap-4 p-4 rounded-2xl bg-surface-container-low">

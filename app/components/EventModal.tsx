@@ -74,7 +74,7 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
 
           {/* Organiser */}
           <p className="text-center text-on-surface-variant text-base mb-8">
-            by <span className="font-semibold text-on-surface">{event.organiser}</span>
+            by <span className="font-semibold text-primary">{event.organiser}</span>
           </p>
 
           {/* Hero Image */}

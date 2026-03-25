@@ -4,11 +4,15 @@ import { Event } from '../types';
 
 interface EventCardProps {
   event: Event;
+  onClick?: () => void;
 }
 
-export function EventCard({ event }: EventCardProps) {
+export function EventCard({ event, onClick }: EventCardProps) {
   return (
-    <article className="group bg-surface-container-lowest rounded-DEFAULT overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(44,47,48,0.06)]">
+    <article 
+      onClick={onClick}
+      className="group bg-surface-container-lowest rounded-DEFAULT overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(44,47,48,0.06)] cursor-pointer"
+    >
       <div className="relative aspect-[16/10] overflow-hidden">
         <img 
           className="w-full h-full object-cover" 

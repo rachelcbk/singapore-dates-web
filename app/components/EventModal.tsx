@@ -98,29 +98,29 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Date */}
               <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center mb-3">
-                  <span className="material-symbols-outlined text-on-primary-container text-2xl">calendar_today</span>
+                <div className="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center mb-3 shadow-sm">
+                  <span className="material-symbols-outlined text-primary text-2xl">calendar_today</span>
                 </div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-1">Date</p>
-                <p className="text-lg text-on-surface font-semibold">{displayDate}</p>
+                <p className="text-base text-on-surface font-semibold">{displayDate}</p>
               </div>
 
               {/* Time */}
               <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center mb-3">
-                  <span className="material-symbols-outlined text-on-primary-container text-2xl">schedule</span>
+                <div className="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center mb-3 shadow-sm">
+                  <span className="material-symbols-outlined text-primary text-2xl">schedule</span>
                 </div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-1">Time</p>
-                <p className="text-lg text-on-surface font-semibold">{event.event_time}</p>
+                <p className="text-base text-on-surface font-semibold">{event.event_time}</p>
               </div>
 
               {/* Location */}
               <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center mb-3">
-                  <span className="material-symbols-outlined text-on-primary-container text-2xl">location_on</span>
+                <div className="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center mb-3 shadow-sm">
+                  <span className="material-symbols-outlined text-primary text-2xl">location_on</span>
                 </div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-1">Location</p>
-                <p className="text-lg text-on-surface font-semibold">{event.general_area || event.location}</p>
+                <p className="text-base text-on-surface font-semibold">{event.general_area || event.location}</p>
               </div>
             </div>
           </div>

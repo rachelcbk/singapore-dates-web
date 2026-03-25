@@ -82,10 +82,12 @@
             background-color: #f5f6f7;
             color: #2c2f30;
             min-height: 100vh;
+        }
+        #page-content {
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        body.loaded { opacity: 1; }
+        #page-content.loaded { opacity: 1; }
         h1, h2, h3, .brand-font {
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
@@ -135,7 +137,7 @@
 </head>
 <body class="bg-surface text-on-surface min-h-screen">
     <!-- Page Loader - Covers everything until ready -->
-    <div id="page-loader" style="visibility: visible !important; opacity: 1 !important;">
+    <div id="page-loader" style="position: fixed; inset: 0; background: #f5f6f7; display: flex; align-items: center; justify-content: center; z-index: 9999;">
         <div style="text-align: center;">
             <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 800; color: #0049e6; margin-bottom: 1rem; letter-spacing: -0.02em;">Head Out</div>
             <div class="loader-spinner"></div>
@@ -156,8 +158,10 @@
                 
                 setTimeout(function() {
                     // Show content
-                    if (content) content.style.visibility = 'visible';
-                    document.body.classList.add('loaded');
+                    if (content) {
+                        content.style.visibility = 'visible';
+                        content.classList.add('loaded');
+                    }
                     // Hide loader
                     if (loader) {
                         loader.style.opacity = '0';

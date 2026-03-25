@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
+<html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Head Out | Discover Singapore Events</title>
@@ -75,7 +75,6 @@
         }
     </script>
 <style>
-        /* Critical CSS - Inline to prevent FOUC */
         html, body { margin: 0; padding: 0; }
         body {
             font-family: 'Inter', sans-serif;
@@ -83,11 +82,6 @@
             color: #2c2f30;
             min-height: 100vh;
         }
-        #page-content {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        #page-content.loaded { opacity: 1; }
         h1, h2, h3, .brand-font {
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
@@ -97,21 +91,15 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Loader */
-        #page-loader {
+        /* Loader - Full screen overlay */
+        #loader {
             position: fixed;
             inset: 0;
             background: #f5f6f7;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        #page-loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
+            z-index: 99999;
         }
         .loader-spinner {
             width: 40px;
@@ -123,64 +111,29 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
         
-        /* Critical layout styles */
-        header {
-            position: sticky;
-            top: 0;
-            background: rgba(245, 246, 247, 0.8);
-            backdrop-filter: blur(12px);
-            z-index: 50;
+        /* Page content hidden initially */
+        #page {
+            display: none;
         }
-        main { max-width: 1280px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+        #page.show {
+            display: block;
+        }
+        
+        /* Brand logo style */
         .brand-logo { font-size: 1.5rem; font-weight: 800; color: #2c2f30; letter-spacing: -0.02em; }
     </style>
 </head>
-<body class="bg-surface text-on-surface min-h-screen">
-    <!-- Page Loader - Covers everything until ready -->
-    <div id="page-loader" style="position: fixed; inset: 0; background: #f5f6f7; display: flex; align-items: center; justify-content: center; z-index: 9999;">
+<body>
+    <!-- LOADER - Shows immediately, hides when page ready -->
+    <div id="loader">
         <div style="text-align: center;">
-            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 800; color: #0049e6; margin-bottom: 1rem; letter-spacing: -0.02em;">Head Out</div>
+            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 800; color: #0049e6; margin-bottom: 1rem;">Head Out</div>
             <div class="loader-spinner"></div>
         </div>
     </div>
     
-    <script>
-        // Show content when ready
-        (function() {
-            var loader = document.getElementById('page-loader');
-            var content = document.getElementById('page-content');
-            var minLoadTime = 500;
-            var startTime = Date.now();
-            
-            function showContent() {
-                var elapsed = Date.now() - startTime;
-                var remaining = Math.max(0, minLoadTime - elapsed);
-                
-                setTimeout(function() {
-                    // Show content
-                    if (content) {
-                        content.style.visibility = 'visible';
-                        content.classList.add('loaded');
-                    }
-                    // Hide loader
-                    if (loader) {
-                        loader.style.opacity = '0';
-                        loader.style.visibility = 'hidden';
-                    }
-                }, remaining);
-            }
-            
-            if (document.readyState === 'complete') {
-                showContent();
-            } else {
-                window.addEventListener('load', showContent);
-            }
-        })();
-    </script>
-    <noscript><style>#page-content { visibility: visible !important; } #page-loader { display: none !important; }</style></noscript>
-    
-    <!-- Page Content - Hidden until loaded -->
-    <div id="page-content" style="visibility: hidden;">
+    <!-- PAGE CONTENT - Hidden until loaded -->
+    <div id="page">
 <!-- TopAppBar Navigation Shell -->
 <header class="docked full-width top-0 z-50 bg-surface/80 backdrop-blur-md sticky">
 <nav class="flex flex-col w-full px-6 pt-4 pb-2 max-w-7xl mx-auto">
@@ -419,5 +372,22 @@
 </a>
 </nav>
 </div>
+
+<script>
+    // Show page when everything is loaded
+    window.addEventListener('load', function() {
+        var loader = document.getElementById('loader');
+        var page = document.getElementById('page');
+        
+        // Small delay to ensure everything is rendered
+        setTimeout(function() {
+            if (loader) loader.style.display = 'none';
+            if (page) page.classList.add('show');
+        }, 300);
+    });
+</script>
+<noscript>
+<style>#loader { display: none !important; } #page { display: block !important; }</style>
+</noscript>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
+<html class="light" lang="en" style="visibility: hidden;"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Head Out | Discover Singapore Events</title>
@@ -143,13 +143,10 @@
     </div>
     
     <script>
-        // Aggressive FOUC prevention - hide everything until ready
+        // Show content when ready
         (function() {
-            // Force hide everything immediately
-            document.documentElement.style.visibility = 'hidden';
-            
             var loader = document.getElementById('page-loader');
-            var minLoadTime = 600;
+            var minLoadTime = 500;
             var startTime = Date.now();
             
             function showContent() {
@@ -157,15 +154,11 @@
                 var remaining = Math.max(0, minLoadTime - elapsed);
                 
                 setTimeout(function() {
-                    // Show content
                     document.documentElement.style.visibility = 'visible';
                     document.body.classList.add('loaded');
-                    // Hide loader
                     if (loader) {
                         loader.style.opacity = '0';
-                        setTimeout(function() {
-                            loader.style.display = 'none';
-                        }, 300);
+                        loader.style.visibility = 'hidden';
                     }
                 }, remaining);
             }
@@ -177,9 +170,7 @@
             }
         })();
     </script>
-    <noscript>
-        <style>html { visibility: visible !important; } body { opacity: 1 !important; } #page-loader { display: none !important; }</style>
-    </noscript>
+    <noscript><style>html { visibility: visible !important; } #page-loader { display: none !important; }</style></noscript>
 <!-- TopAppBar Navigation Shell -->
 <header class="docked full-width top-0 z-50 bg-surface/80 backdrop-blur-md sticky">
 <nav class="flex flex-col w-full px-6 pt-4 pb-2 max-w-7xl mx-auto">

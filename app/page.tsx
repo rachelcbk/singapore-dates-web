@@ -1,6 +1,8 @@
 import { getEvents } from './lib/supabase';
 import { EventCard } from './components/EventCard';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const events = await getEvents();
 

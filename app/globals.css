@@ -117,6 +117,14 @@
 /* Border colors */
 .border-outline { border-color: var(--outline); }
 .border-outline-variant { border-color: var(--outline-variant); }
+.border-outline-variant\\/20 { border-color: rgba(171, 173, 174, 0.2); }
+
+/* Opacity variants */
+.bg-surface-container-highest\\/30 { background-color: rgba(218, 221, 223, 0.3); }
+.hover\\:bg-surface-container-highest:hover { background-color: var(--surface-container-highest); }
+
+/* Group hover */
+.group:hover .group-hover\\:text-primary { color: var(--primary); }
 
 /* Base styles */
 .material-symbols-outlined {

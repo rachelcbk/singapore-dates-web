@@ -4,27 +4,31 @@ import { useState, useEffect } from 'react';
 
 export default function LoadingWrapper({ children }: { children: React.ReactNode }) {
   const [loaded, setLoaded] = useState(false);
+  const [showOut, setShowOut] = useState(false);
 
   useEffect(() => {
+    // Flip "Home" to "Out" after a brief moment
+    const flipTimer = setTimeout(() => {
+      setShowOut(true);
+    }, 600);
+
     const showContent = () => {
       setTimeout(() => setLoaded(true), 500);
     };
 
-    // Check if already complete
     if (document.readyState === 'complete') {
       showContent();
-      return;
+    } else {
+      window.addEventListener('load', showContent);
     }
 
-    // Wait for load event
-    window.addEventListener('load', showContent);
-    
-    // Fallback: show after 3 seconds max (prevents infinite loading)
+    // Fallback timeout
     const timeout = setTimeout(() => {
       setLoaded(true);
     }, 3000);
 
     return () => {
+      clearTimeout(flipTimer);
       window.removeEventListener('load', showContent);
       clearTimeout(timeout);
     };
@@ -32,40 +36,78 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
 
   return (
     <>
-      {/* Loader - Shows until loaded */}
+      {/* Loader */}
       {!loaded && (
         <div style={{
           position: 'fixed',
           inset: 0,
           background: '#f5f6f7',
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           zIndex: 99999,
         }}>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{
-              fontFamily: 'Plus Jakarta Sans, sans-serif',
-              fontSize: '2rem',
-              fontWeight: 800,
-              color: '#0049e6',
-              marginBottom: '1rem',
+          {/* Logo with flip animation */}
+          <div style={{
+            fontFamily: 'Plus Jakarta Sans, sans-serif',
+            fontSize: '2.5rem',
+            fontWeight: 800,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+          }}>
+            <span style={{ color: '#0049e6' }}>Head</span>
+            <span style={{
+              display: 'inline-block',
+              perspective: '1000px',
+              position: 'relative',
+              width: '3.5ch',
+              textAlign: 'center',
             }}>
-              Head Out
-            </div>
-            <div style={{
-              width: '40px',
-              height: '40px',
-              border: '3px solid #e6e8ea',
-              borderTopColor: '#0049e6',
-              borderRadius: '50%',
-              animation: 'spin 0.8s linear infinite',
-            }} />
+              {/* Home - flips out */}
+              <span style={{
+                display: 'block',
+                color: '#2c2f30',
+                transform: showOut ? 'rotateX(-90deg)' : 'rotateX(0deg)',
+                transformOrigin: 'center bottom',
+                transition: 'transform 0.4s ease-in',
+                position: 'absolute',
+                inset: 0,
+                backfaceVisibility: 'hidden',
+              }}>
+                Home
+              </span>
+              {/* Out - flips in */}
+              <span style={{
+                display: 'block',
+                color: '#0049e6',
+                transform: showOut ? 'rotateX(0deg)' : 'rotateX(90deg)',
+                transformOrigin: 'center top',
+                transition: 'transform 0.4s ease-out',
+                position: 'absolute',
+                inset: 0,
+                backfaceVisibility: 'hidden',
+              }}>
+                Out
+              </span>
+            </span>
           </div>
+
+          {/* Spinner */}
+          <div style={{
+            width: '40px',
+            height: '40px',
+            border: '3px solid #e6e8ea',
+            borderTopColor: '#0049e6',
+            borderRadius: '50%',
+            animation: 'spin 0.8s linear infinite',
+            marginTop: '2rem',
+          }} />
         </div>
       )}
       
-      {/* Content - Hidden until loaded */}
+      {/* Content */}
       <div style={{ display: loaded ? 'block' : 'none' }}>
         {children}
       </div>

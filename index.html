@@ -75,31 +75,97 @@
         }
     </script>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
+        /* Critical CSS - Inline to prevent FOUC */
+        html, body { margin: 0; padding: 0; }
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f5f6f7;
+            color: #2c2f30;
+            min-height: 100vh;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
+        body.loaded { opacity: 1; }
         h1, h2, h3, .brand-font {
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Loader */
+        #page-loader {
+            position: fixed;
+            inset: 0;
+            background: #f5f6f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
+        #page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e6e8ea;
+            border-top-color: #0049e6;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        /* Critical layout styles */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(245, 246, 247, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 50;
+        }
+        main { max-width: 1280px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+        .brand-logo { font-size: 1.5rem; font-weight: 800; color: #2c2f30; letter-spacing: -0.02em; }
     </style>
 </head>
 <body class="bg-surface text-on-surface min-h-screen">
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-spinner"></div>
+    </div>
+    
+    <script>
+        // Prevent FOUC: Show content only when styles are ready
+        (function() {
+            var hideTimer = setTimeout(function() {
+                document.body.classList.add('loaded');
+                var loader = document.getElementById('page-loader');
+                if (loader) loader.classList.add('hidden');
+            }, 100); // Quick render
+            
+            // Ensure loader hides when everything is ready
+            window.addEventListener('load', function() {
+                clearTimeout(hideTimer);
+                document.body.classList.add('loaded');
+                var loader = document.getElementById('page-loader');
+                if (loader) loader.classList.add('hidden');
+            });
+        })();
+    </script>
+    <noscript>
+        <style>body { opacity: 1 !important; } #page-loader { display: none !important; }</style>
+    </noscript>
 <!-- TopAppBar Navigation Shell -->
 <header class="docked full-width top-0 z-50 bg-surface/80 backdrop-blur-md sticky">
 <nav class="flex flex-col w-full px-6 pt-4 pb-2 max-w-7xl mx-auto">
 <div class="flex items-center justify-between w-full">
 <!-- Brand Logo (Identity Lock) -->
-<div class="text-2xl font-extrabold text-[#2c2f30] tracking-[-2%] brand-font">
+<div class="brand-logo text-2xl font-extrabold tracking-[-2%] brand-font">
                     Head Out
                 </div>
 <!-- Desktop Navigation Links -->

@@ -56,15 +56,6 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
 
         {/* Content Container */}
         <div className="p-6 md:p-10">
-          {/* Category Badge (if available) */}
-          {event.category && (
-            <div className="flex justify-center mb-4">
-              <span className="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest bg-primary-container text-on-primary-container shadow-sm">
-                {event.category}
-              </span>
-            </div>
-          )}
-
           {/* Cost Badge */}
           <div className="flex justify-center mb-6">
             <span className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm ${
@@ -102,38 +93,34 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
             </p>
           </div>
 
-          {/* Info Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Date Card */}
-            <div className="flex items-center gap-4 p-4 rounded-2xl bg-surface-container-low">
-              <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center flex-shrink-0">
-                <span className="material-symbols-outlined text-on-primary-container">calendar_today</span>
+          {/* Info Bar - Horizontal Layout */}
+          <div className="bg-surface-container-low rounded-[2rem] p-8 md:p-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Date */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center mb-3">
+                  <span className="material-symbols-outlined text-on-primary-container text-2xl">calendar_today</span>
+                </div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-1">Date</p>
+                <p className="text-lg text-on-surface font-semibold">{displayDate}</p>
               </div>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Date</p>
-                <p className="text-sm font-semibold text-on-surface">{displayDate}</p>
-              </div>
-            </div>
 
-            {/* Time Card */}
-            <div className="flex items-center gap-4 p-4 rounded-2xl bg-surface-container-low">
-              <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center flex-shrink-0">
-                <span className="material-symbols-outlined text-on-primary-container">schedule</span>
+              {/* Time */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center mb-3">
+                  <span className="material-symbols-outlined text-on-primary-container text-2xl">schedule</span>
+                </div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-1">Time</p>
+                <p className="text-lg text-on-surface font-semibold">{event.event_time}</p>
               </div>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Time</p>
-                <p className="text-sm font-semibold text-on-surface">{event.event_time}</p>
-              </div>
-            </div>
 
-            {/* Location Card */}
-            <div className="flex items-center gap-4 p-4 rounded-2xl bg-surface-container-low">
-              <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center flex-shrink-0">
-                <span className="material-symbols-outlined text-on-primary-container">location_on</span>
-              </div>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">Location</p>
-                <p className="text-sm font-semibold text-on-surface">{event.location}</p>
+              {/* Location */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center mb-3">
+                  <span className="material-symbols-outlined text-on-primary-container text-2xl">location_on</span>
+                </div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-1">Location</p>
+                <p className="text-lg text-on-surface font-semibold">{event.general_area || event.location}</p>
               </div>
             </div>
           </div>

@@ -46,7 +46,7 @@ export function EventCard({ event, onClick }: EventCardProps) {
           </div>
           <div className="flex items-center gap-1">
             <span className="material-symbols-outlined text-sm">location_on</span>
-            <span>{event.location}</span>
+            <span>{event.general_area || event.location}</span>
           </div>
         </div>
       </div>

@@ -127,7 +127,7 @@ export function EventList({ events }: EventListProps) {
       </main>
 
       {/* Footer Shell */}
-      <footer className="bg-surface-container-low mt-24 pt-20 pb-20 md:pb-32">
+      <footer className="bg-surface-container-low mt-24 pt-20 pb-20">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
             <h2 className="text-3xl font-extrabold text-on-surface mb-6 tracking-tight">Head Out</h2>
@@ -164,26 +164,6 @@ export function EventList({ events }: EventListProps) {
           <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest text-center md:text-left">© 2024 HEAD OUT SINGAPORE. ALL RIGHTS RESERVED.</p>
         </div>
       </footer>
-
-      {/* BottomNavBar (Mobile Only Anchor) */}
-      <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-surface/80 backdrop-blur-xl shadow-[0_-10px_40px_rgba(44,47,48,0.06)] border-t border-white/10 rounded-t-3xl">
-        <a className="flex flex-col items-center justify-center bg-[#0052FF]/10 text-[#0052FF] rounded-full px-5 py-2 transition-all cubic-bezier(0.4,0,0.2,1) active:scale-95" href="#">
-          <span className="material-symbols-outlined" style={{fontVariationSettings: "'FILL' 1"}}>explore</span>
-          <span className="font-['Inter'] text-[10px] uppercase tracking-[5%] font-bold mt-1">Discover</span>
-        </a>
-        <a className="flex flex-col items-center justify-center text-[#595c5d] px-5 py-2 hover:opacity-80 transition-opacity active:scale-95" href="#">
-          <span className="material-symbols-outlined">event_note</span>
-          <span className="font-['Inter'] text-[10px] uppercase tracking-[5%] font-bold mt-1">Events</span>
-        </a>
-        <a className="flex flex-col items-center justify-center text-[#595c5d] px-5 py-2 hover:opacity-80 transition-opacity active:scale-95" href="#">
-          <span className="material-symbols-outlined">bookmark</span>
-          <span className="font-['Inter'] text-[10px] uppercase tracking-[5%] font-bold mt-1">Saved</span>
-        </a>
-        <a className="flex flex-col items-center justify-center text-[#595c5d] px-5 py-2 hover:opacity-80 transition-opacity active:scale-95" href="#">
-          <span className="material-symbols-outlined">person</span>
-          <span className="font-['Inter'] text-[10px] uppercase tracking-[5%] font-bold mt-1">Profile</span>
-        </a>
-      </nav>
 
       {/* Event Modal */}
       <EventModal 

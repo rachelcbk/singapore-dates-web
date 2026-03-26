@@ -1,6 +1,6 @@
-import { getEventById } from '@/lib/supabase';
+import { getEventById } from '../../lib/supabase';
 import { notFound } from 'next/navigation';
-import { formatDateRange } from '@/types';
+import { formatDateRange } from '../../types';
 import Link from 'next/link';
 
 interface EventPageProps {

@@ -87,13 +87,15 @@ export function EventModal({ event, isOpen, onClose }: EventModalProps) {
           </div>
 
           {/* Description */}
-          <div className="mb-10 space-y-4">
-            {event.description.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="text-on-surface-variant leading-relaxed">
-                {paragraph}
-              </p>
-            ))}
-          </div>
+          {event.description && (
+            <div className="mb-10 space-y-4">
+              {event.description.split('\n\n').map((paragraph, index) => (
+                <p key={index} className="text-on-surface-variant leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          )}
 
           {/* Info Bar - Location First, Then Date & Time */}
           <div className="bg-surface-container-low rounded-[2rem] p-8 md:p-12">

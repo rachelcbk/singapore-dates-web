@@ -1,8 +1,6 @@
 'use client';
 
-import { useState } from 'react';
 import { EventCard } from './EventCard';
-import { EventModal } from './EventModal';
 import { Event } from '../types';
 
 interface EventListProps {
@@ -10,19 +8,6 @@ interface EventListProps {
 }
 
 export function EventList({ events }: EventListProps) {
-  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = (event: Event) => {
-    setSelectedEvent(event);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setTimeout(() => setSelectedEvent(null), 300);
-  };
-
   return (
     <>
       {/* TopAppBar Navigation Shell */}
@@ -108,7 +93,6 @@ export function EventList({ events }: EventListProps) {
               <EventCard 
                 key={event.id} 
                 event={event} 
-                onClick={() => handleOpenModal(event)}
               />
             ))
           ) : (
@@ -164,13 +148,6 @@ export function EventList({ events }: EventListProps) {
           <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest text-center md:text-left">© 2024 HEAD OUT SINGAPORE. ALL RIGHTS RESERVED.</p>
         </div>
       </footer>
-
-      {/* Event Modal */}
-      <EventModal 
-        event={selectedEvent}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-      />
     </>
   );
 }

@@ -19,3 +19,18 @@ export async function getEvents(): Promise<Event[]> {
 
   return data || [];
 }
+
+export async function getEventById(id: string): Promise<Event | null> {
+  const { data, error } = await supabase
+    .from('events')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error) {
+    console.error('Error fetching event:', error);
+    return null;
+  }
+
+  return data;
+}

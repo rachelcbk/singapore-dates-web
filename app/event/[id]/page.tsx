@@ -10,7 +10,8 @@ interface EventPageProps {
 }
 
 export async function generateMetadata({ params }: EventPageProps) {
-  const event = await getEventById(params.id);
+  const { id } = await params;
+  const event = await getEventById(id);
   
   if (!event) {
     return {
@@ -30,7 +31,8 @@ export async function generateMetadata({ params }: EventPageProps) {
 }
 
 export default async function EventPage({ params }: EventPageProps) {
-  const event = await getEventById(params.id);
+  const { id } = await params;
+  const event = await getEventById(id);
   
   if (!event) {
     notFound();
